@@ -20,11 +20,8 @@ public class MainActivity extends AppCompatActivity {
         TextView body = findViewById(R.id.bady);
         TextView title = findViewById(R.id.title);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
+
+        RetrofitInterface retrofitInterface = RetrofitInstance.getRetrofit().create(RetrofitInterface.class);
         Call<Model>call = retrofitInterface.getData();
         call.enqueue(new Callback<Model>() {
             @Override
